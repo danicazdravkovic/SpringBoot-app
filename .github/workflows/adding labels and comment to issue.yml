@@ -1,8 +1,9 @@
 name: Labeling issues and adding comment
 on:
   issues:
-    types: [opened]
-  push:
+    types: 
+      -opened
+      -reopened
 
 jobs:
   comment:
