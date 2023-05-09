@@ -1,0 +1,26 @@
+name: Welcome New Contributors
+
+on:
+  issues:
+    types: [opened, reopened]
+  push:
+    types: [opened]
+
+jobs:
+  welcome_contributors:
+    runs-on: ubuntu-latest
+    permissions: 
+      issue: write
+    steps:
+      - name: Check for First Interaction
+        uses: actions/first-interaction@v1
+        id: first_interaction
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}      
+      - name: Welcome New Contributors
+        if: steps.first_interaction.outputs.first_interaction == 'true'
+        run: |
+          echo "Thanks for opening your first issue/push request in this repository! Welcome to the community!"
+          echo "Looking forward to your contributions :)"
+  
+
