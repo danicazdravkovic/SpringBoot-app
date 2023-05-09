@@ -1,26 +1,18 @@
-name: Issue_Labeler_Help
-
+name: Commenting on issue
 on:
   issues:
-    types: 
-      - reopened
-      - opened
-      - edited
+    types: [opened]
 
 jobs:
-  apply-label:
+  comment:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
-      - name: Check if issue needs "need_help" label
-        if: contains(github.event.issue.title, 'help') || contains(github.event.issue.body, 'help')
-        uses: actions/github-script@v6
+      - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.addLabels({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["need_help", "require_answer"]
+              body: '👋 Thanks for reporting!'
             })
