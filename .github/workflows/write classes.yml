@@ -1,0 +1,24 @@
+name: Write all classes in Maven Project
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+          
+      - name: Build with Maven
+        run: |
+          chmod +x mvnw
+          ./mvnw clean install
+          
+      - name: Write Classes to File
+        run: |
+          find . -name '*.class' > classes.txt
