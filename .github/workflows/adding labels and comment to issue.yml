@@ -1,22 +1,26 @@
-name: Labeling issues
+name: Issue_Labeler_Help
 
 on:
   issues:
     types: 
       - reopened
       - opened
+      - edited
+
 jobs:
   apply-label:
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - uses: actions/github-script@v6
+      - name: Check if issue needs "need_help" label
+        if: contains(github.event.issue.title, 'help') || contains(github.event.issue.body, 'help')
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["bug"]
+              labels: ["need_help", "require_answer"]
             })
