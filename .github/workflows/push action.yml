@@ -5,9 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Event that starts this action is ${{github.event_name}}"
+      - run: echo "Actor's name is ${{github.actor}}"
   show_message:
     runs-on: ubuntu-latest
     steps:
       - name: Show message
-        run: echo "Push event detected on main branch. This is a custom message."
+        run: echo "${{github.event_name}} event detected on ${{github.ref_name}} branch."
       
