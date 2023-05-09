@@ -7,7 +7,7 @@ jobs:
   apply-label:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      issues: write-all
     steps:
       - uses: actions/github-script@v4
         with:
