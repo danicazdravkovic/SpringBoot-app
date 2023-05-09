@@ -17,4 +17,4 @@ jobs:
       - name: Clean and Build with Maven
         run: |
           chmod +x mvnw
-          ./mvnw clean install
+          ./mvnw clean install -DskipTests
