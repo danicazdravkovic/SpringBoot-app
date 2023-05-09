@@ -8,21 +8,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-
-        - name: Clean and Build with Maven
+      - name: Clean and Build with Maven
         run: |
           chmod +x mvnw
           ./mvnw clean install -DskipTests   
-
       - name: Write Classes to File
         run: |
           find . -name '*.class' > classes.txt
-          
       - name: Commit and Push Changes
         uses: EndBug/add-and-commit@v7
         with:
