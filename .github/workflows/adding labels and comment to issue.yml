@@ -1,22 +1,19 @@
-name: Labeling issues
+name: Labeling issues and adding comment
 on:
   issues:
-    types:
-      - reopened
-      - opened
+    types: [opened]
+  push:
+
 jobs:
-  label_issues:
+  comment:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.addLabels({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["bug"]
+              body: '👋 Thanks for reporting!'
             })
-      
