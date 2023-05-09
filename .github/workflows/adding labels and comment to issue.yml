@@ -6,6 +6,8 @@ on:
 jobs:
   apply-label:
     runs-on: ubuntu-latest
+    permission: 
+      issue: write
     steps:
       - uses: actions/github-script@v6
         with:
