@@ -1,13 +1,15 @@
 name: Labeling issues
+
 on:
   issues:
-    types: [opened]
-
+    types: 
+      - reopened
+      - opened
 jobs:
   apply-label:
     runs-on: ubuntu-latest
-    permission: 
-      issue: write
+    permissions:
+      issues: write
     steps:
       - uses: actions/github-script@v6
         with:
