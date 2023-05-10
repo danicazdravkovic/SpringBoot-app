@@ -6,8 +6,6 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write-all
     steps:
       - uses: actions/github-script@v4
         with:
