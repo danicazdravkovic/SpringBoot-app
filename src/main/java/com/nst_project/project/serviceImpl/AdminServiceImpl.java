@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public AdminDto login(AdminDto adminDto) { 
+    public AdminDto login(AdminDto adminDto) throws AdminException { 
         Admin a=adminMapper.toEntity(adminDto);
         List<Admin> admins = adminRepository.findByUsernameAndPassword(a.getUsername(),a.getPassword());
         if(!admins.isEmpty()) 

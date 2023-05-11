@@ -61,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService{
          if (customerRepository.findById(customerDto.getCustomerID()).isPresent())
 //            return chocolateRepository.save(chocolateDto);
                 return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(customerDto)));
-        throw new CustomerException("That chocolate does not exist!");
+        throw new CustomerException("That customer does not exist!");
    
     }
 

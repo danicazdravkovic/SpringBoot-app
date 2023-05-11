@@ -5,6 +5,7 @@
 package com.nst_project.project.service;
 
 import com.nst_project.project.dtos.AdminDto;
+import com.nst_project.project.exception.AdminException;
 
 /**
  *
@@ -12,6 +13,6 @@ import com.nst_project.project.dtos.AdminDto;
  */
 public interface AdminService {
 
-    public AdminDto login(AdminDto adminDto);
+    public AdminDto login(AdminDto adminDto) throws AdminException;
     
 }

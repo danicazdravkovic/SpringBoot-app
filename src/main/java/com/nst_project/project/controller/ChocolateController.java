@@ -53,7 +53,7 @@ public class ChocolateController {
             return ResponseEntity.status(HttpStatus.OK).body(entity);
         } catch (ChocolateException e) {
 
-            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

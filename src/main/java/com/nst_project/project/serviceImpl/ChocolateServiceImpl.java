@@ -77,7 +77,7 @@ public class ChocolateServiceImpl implements ChocolateService {
         try{
         chocolateRepository.deleteById(id);
         }catch (Exception e){
-            throw new ChocolateException("Chocolate can't been deleted because some orders contain this chocolate");
+            throw new ChocolateException("Chocolate can't been deleted");
         }
     }
 

@@ -1,2 +1,6 @@
-C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\ProjectApplicationTests.java
-C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\NewEmptyJUnitTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\AdminControllerTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\CategoryControllerTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\OrderItemControllerTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\ChocolateControllerTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\CustomerControllerTest.java
+C:\Users\nodas\Desktop\Automatizacija\Projekat\Chocolates\chocolates_back\src\test\java\com\nst_project\project\controller\OrderControllerTest.java
