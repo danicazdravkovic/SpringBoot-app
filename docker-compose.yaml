@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  mariadb:
+    image: "mariadb"
+    ports: 
+      - 3306:3306
+    restart: unless-stopped
+    environment:
+      - MARIADB_USER=user
+      - MARIADB_ALLOW_EMPTY_PASSWORD=1
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
+    command: --init-file /data/application/init.sql
+    volumes: #povezivanje mog filesistema sa dockerom
+      - ./init.sql:/data/application/init.sql
+  app:
+    depends_on:
+      - "mariadb"
+    image: "sweapp:1.0" 
+    ports:
+      - 8080:8080
+    restart: on-failure  
+  
