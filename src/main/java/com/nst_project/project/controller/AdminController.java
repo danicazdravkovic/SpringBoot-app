@@ -29,7 +29,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/login")
-    ResponseEntity<Object> customerLogin(@RequestBody AdminDto adminDto) {
+    ResponseEntity<Object> adminLogin(@RequestBody AdminDto adminDto) {
         try {
             AdminDto entity = adminService.login(adminDto);
             return ResponseEntity.status(HttpStatus.OK).body(entity);

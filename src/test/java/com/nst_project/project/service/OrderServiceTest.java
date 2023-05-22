@@ -173,13 +173,5 @@ public class OrderServiceTest {
 //        verify(OrderRepository, times(1)).deleteById(1);
     }
 
-//    @Test
-//    public void deleteFailTest() throws OrderException {
-//        OrderException exception = assertThrows(OrderException.class, () -> OrderService.delete(999));
-//        String expectedMessage = "Order can't been deleted because some chocolates contain this Order";
-//        String actualMessage = exception.getMessage();
-//        // Assert that the exception message matches the expected message
-//        assertEquals(actualMessage, expectedMessage);
-//    }
 
 }

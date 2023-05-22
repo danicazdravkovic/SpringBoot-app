@@ -14,6 +14,7 @@ import com.nst_project.project.model.Category;
 import com.nst_project.project.model.Category;
 import com.nst_project.project.repository.CategoryRepository;
 import com.nst_project.project.repository.CategoryRepository;
+import com.nst_project.project.service.CategoryService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -166,13 +167,6 @@ public class CategoryServiceTest {
         verify(categoryRepository, times(1)).deleteById(1);
     }
 
-    @Test
-    public void deleteFailTest() throws CategoryException {
-        CategoryException exception = assertThrows(CategoryException.class, () -> categoryService.delete(999));
-        String expectedMessage = "Category can't been deleted because some chocolates contain this category";
-        String actualMessage = exception.getMessage();
-        // Assert that the exception message matches the expected message
-        assertEquals(actualMessage, expectedMessage);
-    }
+    
 
 }

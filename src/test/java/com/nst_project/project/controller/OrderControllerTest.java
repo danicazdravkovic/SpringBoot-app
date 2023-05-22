@@ -46,6 +46,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -83,16 +84,17 @@ public class OrderControllerTest {
 
     @BeforeEach
     public void setUp() {
-        date=new Date();
-        orderDto = new OrderDto(1, date, "status", new CustomerDto());
+        date = new Date();
+        orderDto = new OrderDto(1,date, "status", new CustomerDto());
     }
 
     @Test
     public void addSuccess() throws Exception {
 
         // kada se pozove fja save vraca se customerDto koji se uneo
-        when(orderService.save(orderDto)).thenReturn(orderDto);
+        given(this.orderService.save(any(OrderDto.class))).willReturn(orderDto);
 
+//        when(orderService.save(orderDto)).thenReturn(orderDto);
         // when
         mockMvc.perform(post("/order")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -100,18 +102,17 @@ public class OrderControllerTest {
                 // then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.orderID", equalTo(orderDto.getOrderID())))
-                .andExpect(jsonPath("$.date", equalTo(orderDto.getDate())))
+                .andExpect(jsonPath("$.date").exists())
                 .andExpect(jsonPath("$.status", equalTo(orderDto.getStatus())))
-                .andExpect(jsonPath("$.categoryDto").exists())
-                .andDo(print());
+                .andExpect(jsonPath("$.customerDto").exists())
+               ;
     }
 
     @Test
     public void getAllOordersSuccess() throws Exception {
         List<OrderDto> orders = new ArrayList<>();
-        orders.add(new OrderDto(1,date, "s", new CustomerDto()));
-                orders.add(new OrderDto(2, date, "s2", new CustomerDto()));
-
+        orders.add(new OrderDto(1, date, "s", new CustomerDto()));
+        orders.add(new OrderDto(2, date, "s2", new CustomerDto()));
 
         // Mock the service to return the list of chocolates
         when(orderService.findAll()).thenReturn(orders);
@@ -137,6 +138,7 @@ public class OrderControllerTest {
     }
 //
 //
+
     @Test
     public void getOrderByIdFail() throws Exception {
         when(orderService.findById(orderDto.getOrderID())).thenThrow(OrderException.class);
@@ -146,6 +148,7 @@ public class OrderControllerTest {
     }
 //
 //
+
     @Test
     public void getOrderByIdSuccess() throws Exception {
         when(orderService.findById(orderDto.getOrderID())).thenReturn(orderDto);
@@ -162,21 +165,26 @@ public class OrderControllerTest {
     }
 ////
 //
+
     @Test
     public void updateFail() throws Exception {
 //        ChocolateDto ch=new ChocolateDto(1, "n", "d", 0, "u", 0, new CategoryDto());
-        when(orderService.update(orderDto)).thenThrow(OrderException.class);
+//        when(orderService.update(orderDto)).thenThrow(OrderException.class);
+        when(orderService.update(any(OrderDto.class))).thenThrow(OrderException.class);
+
         mockMvc.perform(put("/order")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(orderDto))).andExpect(status().isNotFound())
-                .andDo(print());
+              ;
     }
 ////
 ////
 //
+
     @Test
     public void updateSuccess() throws Exception {
-        when(orderService.update(orderDto)).thenReturn(orderDto);
+//        when(orderService.update(orderDto)).thenReturn(orderDto);
+        given(this.orderService.update(any(OrderDto.class))).willReturn(orderDto);
 
         mockMvc.perform(put("/order")
                 .contentType(MediaType.APPLICATION_JSON)

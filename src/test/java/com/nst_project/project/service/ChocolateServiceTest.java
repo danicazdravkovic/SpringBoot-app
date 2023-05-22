@@ -170,13 +170,4 @@ public class ChocolateServiceTest {
         verify(ChocolateRepository, times(1)).deleteById(1);
     }
 
-//    @Test
-//    public void deleteFailTest() throws ChocolateException {
-//        ChocolateException exception = assertThrows(ChocolateException.class, () -> ChocolateService.delete(999));
-//        String expectedMessage = "Chocolate can't been deleted because some chocolates contain this Chocolate";
-//        String actualMessage = exception.getMessage();
-//        // Assert that the exception message matches the expected message
-//        assertEquals(actualMessage, expectedMessage);
-//    }
-
 }

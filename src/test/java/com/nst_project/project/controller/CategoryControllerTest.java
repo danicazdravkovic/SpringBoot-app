@@ -94,7 +94,7 @@ public class CategoryControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.name", equalTo(categoryDto.getName())))
                 .andExpect(jsonPath("$.description", equalTo(categoryDto.getDescription())))
-                .andDo(print());
+               ;
     }
 
     @Test
@@ -124,7 +124,7 @@ public class CategoryControllerTest {
     }
 
     @Test
-    public void getCustomerByIdSuccess() throws Exception {
+    public void getCategoryByIdSuccess() throws Exception {
         when(categoryService.findById(categoryDto.getCategoryID())).thenReturn(categoryDto);
         mockMvc.perform(get("/category/1")
                 .contentType(MediaType.APPLICATION_JSON)

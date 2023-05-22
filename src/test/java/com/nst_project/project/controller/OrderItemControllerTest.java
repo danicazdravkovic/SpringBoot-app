@@ -50,6 +50,8 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -102,6 +104,7 @@ public class OrderItemControllerTest {
         orderItems.add(orderItemDto2);
 
         when(orderItemService.saveOrderItems(orderItems)).thenReturn(orderItems);
+        given(this.orderItemService.saveOrderItems(Mockito.<OrderItemDto>anyList())).willReturn(orderItems);
 
         // when
         mockMvc.perform(post("/orderItems")
@@ -110,15 +113,15 @@ public class OrderItemControllerTest {
                 // then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].orderDto").exists())
-                .andExpect(jsonPath("$[0].orderItemID", equalTo(orderItemDto.getOrderItemID())))
+                .andExpect(jsonPath("$[0].orderItemID", equalTo(orderItemDto1.getOrderItemID())))
                 .andExpect(jsonPath("$[0].chocolateDto").exists())
                 .andExpect(jsonPath("$[0].quantity",is(1)))
                 .andExpect(jsonPath("$[1].orderDto").exists())
-                .andExpect(jsonPath("$[1].orderItemID", equalTo(orderItemDto.getOrderItemID())))
+                .andExpect(jsonPath("$[1].orderItemID", equalTo(orderItemDto2.getOrderItemID())))
                 .andExpect(jsonPath("$[1].chocolateDto").exists())
-                .andExpect(jsonPath("$[1].quantity",is(1)))
+                .andExpect(jsonPath("$[1].quantity",is(2)))
                 
-                .andDo(print());
+                ;
     }
 
     @Test

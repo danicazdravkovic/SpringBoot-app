@@ -15,6 +15,7 @@ import com.nst_project.project.model.Admin;
 import com.nst_project.project.model.Customer;
 import com.nst_project.project.repository.AdminRepository;
 import com.nst_project.project.repository.CustomerRepository;
+import com.nst_project.project.service.AdminService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,12 +44,15 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
+//import org.junit.runner.RunWith;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author nodas
  */
+
 @SpringBootTest
 public class AdminServiceTest {
 

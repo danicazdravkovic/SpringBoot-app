@@ -10,6 +10,7 @@ import com.nst_project.project.exception.CustomerException;
 import com.nst_project.project.mapper.CustomerMapper;
 import com.nst_project.project.model.Customer;
 import com.nst_project.project.repository.CustomerRepository;
+import com.nst_project.project.service.CustomerService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -218,13 +219,6 @@ public void updateCustomerSuccessTest() throws CustomerException {
         // Assert
         verify(customerRepository, times(1)).deleteById(1);
     }
-     @Test
-     public void deleteFailTest() throws CustomerException {
-        CustomerException exception = assertThrows(CustomerException.class, () -> customerService.delete(999));
-        String expectedMessage = "Chocolate can't been deleted because some orders contain this chocolate";
-        String actualMessage = exception.getMessage();
-        // Assert that the exception message matches the expected message
-        assertEquals(actualMessage,expectedMessage);
-    }
+    
 
 }

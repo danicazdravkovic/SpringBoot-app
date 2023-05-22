@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import static org.hamcrest.Matchers.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -87,8 +88,9 @@ public class ChocolateControllerTest {
 
     @Test
     public void addSuccess() throws Exception {
+        given(this.chocolateService.save(any(ChocolateDto.class))).willReturn(chocolateDto);
 
-        when(chocolateService.save(chocolateDto)).thenReturn(chocolateDto);
+//        when(chocolateService.save(chocolateDto)).thenReturn(chocolateDto);
 
         // when and then
         mockMvc.perform(post("/chocolate")
@@ -104,7 +106,7 @@ public class ChocolateControllerTest {
                 .andExpect(jsonPath("$.categoryDto.categoryID", equalTo(chocolateDto.getCategoryDto().getCategoryID())))
                 .andExpect(jsonPath("$.categoryDto.name", equalTo(chocolateDto.getCategoryDto().getName())))
                 .andExpect(jsonPath("$.categoryDto.description", equalTo(chocolateDto.getCategoryDto().getDescription())))
-                .andDo(print());
+                ;
 
     }
 
@@ -191,18 +193,21 @@ public class ChocolateControllerTest {
     @Test
     public void updateFail() throws Exception {
 //        ChocolateDto ch=new ChocolateDto(1, "n", "d", 0, "u", 0, new CategoryDto());
-        when(chocolateService.update(chocolateDto)).thenThrow(ChocolateException.class);
+        when(chocolateService.update(any(ChocolateDto.class))).thenThrow(ChocolateException.class);
+
+//        when(chocolateService.update(chocolateDto)).thenThrow(ChocolateException.class);
         mockMvc.perform(put("/chocolate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(chocolateDto))).andExpect(status().isNotFound())
-                .andDo(print());
+                ;
     }
 //
 //
 
     @Test
     public void updateSuccess() throws Exception {
-        when(chocolateService.update(chocolateDto)).thenReturn(chocolateDto);
+//        when(chocolateService.update(chocolateDto)).thenReturn(chocolateDto);
+        given(this.chocolateService.update(any(ChocolateDto.class))).willReturn(chocolateDto);
 
         mockMvc.perform(put("/chocolate")
                 .contentType(MediaType.APPLICATION_JSON)
